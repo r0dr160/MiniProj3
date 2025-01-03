@@ -1,62 +1,112 @@
-# Tarefa 3.2: Miniprojeto - Desenvolvimento do front-end
+# Animalec - Um App Pedagógico para Gerenciamento de Animais
 
-## Descrição
+Projeto full-stack que combina um **frontend em Vue.js** com um **backend em Node.js**. Este sistema permite o gerenciamento de patrocinadores e experts, com funcionalidades de mock no frontend para facilitar o desenvolvimento e validação local. O backend é integrado ao banco de dados MongoDB e documentado com Swagger para facilitar o uso das APIs.
 
-Este projeto é um sistema Front-end que utiliza **Vue.js** e simula interações com uma API por meio de dados mockados. O mock foi implementado para facilitar os testes e o desenvolvimento local, permitindo a simulação de respostas da API sem necessidade de um backend funcional.
+---
 
-A funcionalidade de mock está habilitada apenas no ambiente de desenvolvimento, garantindo que não interfira em um ambiente de produção.
+## Funcionalidades
 
-## Funcionalidades Implementadas
+### Backend
+1. **APIs REST**
+   - Gerenciamento completo das entidades `Sponsors` (patrocinadores) e `Experts`:
+      - **GET**: Busca dados de todos os registros.
+      - **POST**: Criação de novos registros.
+      - **PUT**: Atualização de registros existentes.
+      - **DELETE**: Exclusão de registros por ID.
 
+2. **Integração com MongoDB**
+   - Conexão segura com o banco de dados utilizando `Mongoose`.
+   - Operações CRUD completas para gerenciar as coleções.
+
+3. **Documentação com Swagger**
+   - Todas as APIs foram documentadas utilizando Swagger.
+   - Documentação interativa disponível em:  
+     [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+
+4. **Validação e Middlewares**
+   - Validações de entrada com Mongoose.
+   - Middleware para tratamento de JSON e requisições codificadas.
+
+---
+
+### Frontend
 1. **Configuração de Mocks**
-    - Arquivo `mock.js` configurado para interceptar chamadas de `fetch` para URLs específicas.
-    - Dados simulados incluem usuários, animais e perguntas.
+   - Arquivo `mock.js` intercepta chamadas `fetch` para rotas específicas.
+   - Dados mockados incluem usuários, animais e perguntas.
+   - Simula interações com uma API em modo de desenvolvimento.
 
-2. **Integração no Projeto**
-    - O mock foi integrado ao `main.js` para ser ativado apenas em ambiente de desenvolvimento.
+2. **Exibição dos Dados Mockados**
+   - Componente `TestMock.vue` exibe dados mockados para validação visual.
 
-3. **Exibição dos Dados Mockados**
-    - Criado um componente `TestMock.vue` que exibe os dados mockados diretamente na interface para validação visual.
+3. **Dados Mockados**
+   - **Usuários**: Lista com `id`, `nome` e `função`.
+   - **Animais**: Lista com `id`, `nome` e `tipo`.
+   - **Perguntas**: Lista com `id`, `enunciado` e `resposta`.
 
-4. **Dados Mockados**
-    - **Usuários:** Lista de usuários com `id`, `nome` e `função`.
-    - **Animais:** Lista de animais com `id`, `nome` e `tipo`.
-    - **Perguntas:** Lista de perguntas com `id`, `enunciado` e `resposta`.
+4. **Ambiente Controlado**
+   - Mocks são ativados apenas em ambiente de desenvolvimento e desativados automaticamente em produção.
 
-## Como Testar o Projeto
+---
 
-1. **Executar o projeto localmente**
-    - Use o comando `npm run serve` para iniciar o servidor de desenvolvimento.
+## Como Rodar o Projeto
 
-2. **Acessar a aplicação no navegador**
-    - Abra o navegador e acesse a URL fornecida pelo terminal, geralmente `http://localhost:8080`.
+### Backend
+1. Navegue para o diretório do backend:  
+   cd Back-end_fca_webbook2-master
 
-3. **Verificar o Mock**
-    - A página inicial do projeto deve exibir os dados mockados no componente `TestMock.vue`, que inclui:
-        - Lista de usuários.
-        - Lista de animais.
-        - Lista de perguntas com suas respostas.
+2. Instale as dependências:  
+   npm install
 
-4. **Simular Requisições API**
-    - A funcionalidade de mock intercepta chamadas feitas com `fetch` para as rotas definidas no arquivo `mock.js`:
-        - `/api/users`
-        - `/api/animals`
-        - `/api/questions`
-    - Verifique no console do navegador os logs de intercepção das requisições mockadas.
+3. Inicie o servidor:  
+   npm start
+
+4. Acesse a documentação da API:  
+   [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
+
+---
+
+### Frontend
+1. Navegue para o diretório do frontend:  
+   cd Front-end_Animalec-master
+
+2. Instale as dependências:  
+   npm install
+
+3. Inicie o servidor:  
+   npm run serve
+
+---
+
+## API Endpoints
+
+### Patrocinadores (Sponsors)
+- **GET** `/api/sponsors`  
+  Retorna todos os patrocinadores.
+
+- **POST** `/api/sponsors`  
+  Adiciona um novo patrocinador.
+
+- **PUT** `/api/sponsors/:id`  
+  Atualiza um patrocinador existente.
+
+- **DELETE** `/api/sponsors/:id`  
+  Remove um patrocinador existente.
+
+---
 
 ## Considerações
+- Certifique-se de rodar o backend e o frontend separadamente, conforme as instruções acima.
+- Utilize o Postman ou o Swagger para testar os endpoints do backend.
+- Lembre-se de rodar o backend com a conexão ao banco de dados configurada.
 
-- Certifique-se de rodar o projeto em **modo de desenvolvimento** para testar os mocks.
-- Para produção, o mock é automaticamente desativado, garantindo que a aplicação se conecte a APIs reais.
+---
 
+## Autor
+- **Rodrigo Costa**
+   - Email: 2401857@estudante.uab.pt
+   - Universidade Aberta
 
-### Tarefa criada por:
-- Rodrigo Costa
-- 2401857@estudante.uab.pt
+---
 
-# Animalec
-An animals pedagogical app
-
-# Using json-server
-To mock some dummy results
-https://github.com/typicode/json-server
+## Licença
+Este projeto é de uso educacional e desenvolvido como parte do Mestrado em Engenharia Informática da Universidade Aberta.

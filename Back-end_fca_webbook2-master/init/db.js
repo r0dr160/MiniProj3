@@ -1,18 +1,15 @@
+const mongoose = require('mongoose');
+
 module.exports = (app, callback) => {
     const CONFIG = require('../config/config');
-    //Connect to DB
-    const mongoose = require('mongoose');
-    let settings = {
-        reconnectTries: Number.MAX_VALUE,
-        autoReconnect: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false
-    };
-    global.mongoConnection = mongoose.createConnection(CONFIG.mongodb.uri, settings, (error) => {
-        if (error) throw error;
-        console.log('---Connected to DB');
-        return callback();
-    })
 
-}
+    console.log("Tentando conectar ao banco de dados...");
+    mongoose.connect(CONFIG.mongodb.uri, { useNewUrlParser: true, useUnifiedTopology: true })
+        .then(() => {
+            console.log("Conexão ao banco de dados bem-sucedida");
+            if (typeof callback === 'function') callback();
+        })
+        .catch((error) => {
+            console.error("Erro ao conectar ao banco de dados:", error.message);
+        });
+};
